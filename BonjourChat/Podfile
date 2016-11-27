@@ -1,0 +1,3 @@
+target "BonjourChat" do
+pod 'DTBonjour', '~> 1.1'
+end
