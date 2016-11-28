@@ -10,14 +10,16 @@
 #import "BonjourChatServer.h"
 #import "BonjourChatClient.h"
 #import "DTBonjourDataConnection.h"
+#import "BBBAudioChunkPlayer.h"
 
 #define kOutputBus 0
 #define kInputBus 1
 
 // ...
 
-@interface SoundController () <DTBonjourDataConnectionDelegate, DTBonjourServerDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface SoundController () <DTBonjourDataConnectionDelegate, DTBonjourServerDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, BBBAudioStream>
 @property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, strong) NSMutableArray *data;
 
 @end
 
@@ -32,6 +34,15 @@
 @synthesize stoped;
 @synthesize player;
 
+- (nullable NSData*)nextChunk {
+    NSData *data = nil;
+    if (self.data.count > 0) {
+        data = self.data.firstObject;
+        [self.data removeObjectAtIndex:0];
+    }
+    return data;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -40,40 +51,13 @@
 
 #pragma mark - View lifecycle
 
-static NSMutableData *gotedData;
-static NSInteger properIndex = 0;
-static AudioComponentInstance audioUnit;
 static dispatch_queue_t processingQueue;
-
-static OSStatus playbackCallback(void *inRefCon,
-                                 AudioUnitRenderActionFlags *ioActionFlags,
-                                 const AudioTimeStamp *inTimeStamp,
-                                 UInt32 inBusNumber,
-                                 UInt32 inNumberFrames,
-                                 AudioBufferList *ioData) {
-    
-    for (int i = 0 ; i < ioData->mNumberBuffers; i++){
-        AudioBuffer buffer = ioData->mBuffers[i];
-        unsigned char *frameBuffer = buffer.mData;
-        unsigned char *bytePtr = (unsigned char *)[gotedData bytes];
-        NSInteger length = [gotedData length];
-        for (int j = 0; j < inNumberFrames*2; j++){
-            unsigned char byte = 0b0;
-            if (properIndex + 1 < length) {
-                ++properIndex;
-                byte = bytePtr[properIndex];
-            }
-            frameBuffer[j] = byte;
-        }
-    }
-    return noErr;
-}
 
 - (void)viewDidLoad
 {
     processingQueue = dispatch_queue_create("processingQueue",
                                             DISPATCH_QUEUE_SERIAL);
-    gotedData = [NSMutableData new];
+    self.data = [NSMutableArray new];
     [super viewDidLoad];
     [self startSession];
 }
@@ -154,105 +138,8 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (void)prepareOutput {
-    OSStatus status;
-    
-    // Describe audio component
-    AudioComponentDescription desc;
-    desc.componentType = kAudioUnitType_Output;
-    desc.componentSubType = kAudioUnitSubType_RemoteIO;
-    desc.componentFlags = 0;
-    desc.componentFlagsMask = 0;
-    desc.componentManufacturer = kAudioUnitManufacturer_Apple;
-    
-    // Get component
-    AudioComponent inputComponent = AudioComponentFindNext(NULL, &desc);
-    
-    // Get audio units
-    status = AudioComponentInstanceNew(inputComponent, &audioUnit);
-    //    checkStatus(status);
-    
-    // Enable IO for recording
-    UInt32 flag = 1;
-//    status = AudioUnitSetProperty(audioUnit,
-//                                  kAudioOutputUnitProperty_EnableIO,
-//                                  kAudioUnitScope_Input,
-//                                  kInputBus,
-//                                  &flag,
-//                                  sizeof(flag));
-    //    checkStatus(status);
-    
-    // Enable IO for playback
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioOutputUnitProperty_EnableIO,
-                                  kAudioUnitScope_Output,
-                                  kOutputBus,
-                                  &flag,
-                                  sizeof(flag));
-    //    checkStatus(status);
-    
-    // Describe format
-    AudioStreamBasicDescription audioFormat;
-    audioFormat.mSampleRate			= 44100.00;
-    audioFormat.mFormatID			= kAudioFormatLinearPCM;
-    audioFormat.mFormatFlags		= kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-    audioFormat.mFramesPerPacket	= 1;
-    audioFormat.mChannelsPerFrame	= 1;
-    audioFormat.mBitsPerChannel		= 16;
-    audioFormat.mBytesPerPacket		= 2;
-    audioFormat.mBytesPerFrame		= 2;
-    
-    // Apply format
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioUnitProperty_StreamFormat,
-                                  kAudioUnitScope_Output,
-                                  kInputBus,
-                                  &audioFormat,
-                                  sizeof(audioFormat));
-    //    checkStatus(status);
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioUnitProperty_StreamFormat,
-                                  kAudioUnitScope_Input,
-                                  kOutputBus,
-                                  &audioFormat,
-                                  sizeof(audioFormat));
-    //    checkStatus(status);
-    
-    
-    // Set input callback
-    AURenderCallbackStruct callbackStruct;
-    //    callbackStruct.inputProcRefCon = self;
-    //    status = AudioUnitSetProperty(audioUnit,
-    //                                  kAudioOutputUnitProperty_SetInputCallback,
-    //                                  kAudioUnitScope_Global,
-    //                                  kInputBus,
-    //                                  &callbackStruct,
-    //                                  sizeof(callbackStruct));
-    //    checkStatus(status);
-    
-    // Set output callback
-    callbackStruct.inputProc = playbackCallback;
-    callbackStruct.inputProcRefCon = (__bridge void * _Nullable)(self);
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioUnitProperty_SetRenderCallback,
-                                  kAudioUnitScope_Global,
-                                  kOutputBus,
-                                  &callbackStruct,
-                                  sizeof(callbackStruct));
-    //    checkStatus(status);
-    
-    // Disable buffer allocation for the recorder (optional - do this if we want to pass in our own)
-    flag = 0;
-//    status = AudioUnitSetProperty(audioUnit,
-//                                  kAudioUnitProperty_ShouldAllocateBuffer,
-//                                  kAudioUnitScope_Output,
-//                                  kInputBus,
-//                                  &flag,
-//                                  sizeof(flag));
-    
-    // TODO: Allocate our own buffers if we want
-    
-    // Initialise
-    status = AudioUnitInitialize(audioUnit);
+    [[BBBAudioChunkPlayer sharedPlayer] setPlay:YES];
+    [[BBBAudioChunkPlayer sharedPlayer] prepareWithStream:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -311,10 +198,10 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (IBAction)stop:(id)sender {
-//    [self.session stopRunning];
+    [[BBBAudioChunkPlayer sharedPlayer] stop];
 }
 - (IBAction)playlastPressed:(id)sender {
-    OSStatus status = AudioOutputUnitStart(audioUnit);
+    [[BBBAudioChunkPlayer sharedPlayer] start];
 }
 
 - (void)playSoundfromData:(NSData*)data {
@@ -324,14 +211,14 @@ static OSStatus playbackCallback(void *inRefCon,
 
 - (void)bonjourServer:(DTBonjourServer *)server didReceiveObject:(id)object onConnection:(DTBonjourDataConnection *)connection
 {
-    [gotedData appendData:object];
+    [self.data addObject:object];
 }
 
 #pragma mark - DTBonjourConnection Delegate (Client)
 
 - (void)connection:(DTBonjourDataConnection *)connection didReceiveObject:(id)object
 {
-    [gotedData appendData:object];
+    [self.data addObject:object];
 }
 
 - (void)connectionDidClose:(DTBonjourDataConnection *)connection

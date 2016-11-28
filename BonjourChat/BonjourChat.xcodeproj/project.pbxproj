@@ -33,6 +33,7 @@
 		E0A16EE31DE6F2EF00A54AA1 /* NSString+DTUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A16EE21DE6F2EF00A54AA1 /* NSString+DTUtilities.m */; };
 		E0A16EE61DE6F7D600A54AA1 /* SoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A16EE51DE6F7D600A54AA1 /* SoundController.m */; };
 		E0A16EE81DE702DC00A54AA1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A16EE71DE702DC00A54AA1 /* AVFoundation.framework */; };
+		E0B8C1A41DEC772B002A91ED /* BBBAudioChunkPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B8C1A31DEC772B002A91ED /* BBBAudioChunkPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,8 @@
 		E0A16EE41DE6F7D600A54AA1 /* SoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundController.h; sourceTree = "<group>"; };
 		E0A16EE51DE6F7D600A54AA1 /* SoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundController.m; sourceTree = "<group>"; };
 		E0A16EE71DE702DC00A54AA1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E0B8C1A21DEC772B002A91ED /* BBBAudioChunkPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBAudioChunkPlayer.h; sourceTree = "<group>"; };
+		E0B8C1A31DEC772B002A91ED /* BBBAudioChunkPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBAudioChunkPlayer.m; sourceTree = "<group>"; };
 		FDE5134C8D728E9B00C2C7B3 /* libPods-BonjourChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonjourChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +154,7 @@
 		A78258E11646D83D00F54871 /* BonjourChat */ = {
 			isa = PBXGroup;
 			children = (
+				E0B8C1A11DEC76F3002A91ED /* External */,
 				E0A16EE11DE6F2EF00A54AA1 /* NSString+DTUtilities.h */,
 				E0A16EE21DE6F2EF00A54AA1 /* NSString+DTUtilities.m */,
 				A78258EA1646D83D00F54871 /* AppDelegate.h */,
@@ -185,6 +189,15 @@
 				A78258F11646D83D00F54871 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E0B8C1A11DEC76F3002A91ED /* External */ = {
+			isa = PBXGroup;
+			children = (
+				E0B8C1A21DEC772B002A91ED /* BBBAudioChunkPlayer.h */,
+				E0B8C1A31DEC772B002A91ED /* BBBAudioChunkPlayer.m */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B8C1A41DEC772B002A91ED /* BBBAudioChunkPlayer.m in Sources */,
 				E0A16EE31DE6F2EF00A54AA1 /* NSString+DTUtilities.m in Sources */,
 				A78258E81646D83D00F54871 /* main.m in Sources */,
 				A78258EC1646D83D00F54871 /* AppDelegate.m in Sources */,

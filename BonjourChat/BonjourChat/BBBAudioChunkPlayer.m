@@ -19,6 +19,8 @@
 
 @implementation BBBAudioChunkPlayer
 
+static AudioComponentInstance fakeAudioUnit;
+
 static id<BBBAudioStream> streamData;
 static NSData *currentData;
 static NSInteger dataIndex;
@@ -62,29 +64,21 @@ static OSStatus recordingCallback(void *inRefCon,
                                   UInt32 inBusNumber,
                                   UInt32 inNumberFrames,
                                   AudioBufferList *ioData) {
-    
-    // TODO: Use inRefCon to access our interface object to do stuff
-    // Then, use inNumberFrames to figure out how much data is available, and make
-    // that much space available in buffers in an AudioBufferList.
-    
-    AudioBufferList *bufferList; // <- Fill this up with buffers (you will want to malloc it, as it's a dynamic-length list)
-    
-    // Then:
-    // Obtain recorded samples
-    
-//    OSStatus status;
-//    
-//    status = AudioUnitRender([audioInterface audioUnit],
-//                             ioActionFlags,
-//                             inTimeStamp,
-//                             inBusNumber,
-//                             inNumberFrames,
-//                             bufferList);
-//    checkStatus(status);
-    
-    // Now, we have the samples we just read sitting in buffers in bufferList
-//    DoStuffWithTheRecordedAudio(bufferList);
     return noErr;
+}
+
+#pragma mark - Shared
+
++ (instancetype)sharedPlayer {
+    static BBBAudioChunkPlayer *instance;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [BBBAudioChunkPlayer new];
+        instance.audioUnit = fakeAudioUnit;
+    });
+    
+    return instance;
 }
 
 #pragma mark - Public
@@ -95,7 +89,7 @@ static OSStatus recordingCallback(void *inRefCon,
     [BBBAudioChunkPlayer setNewStream:stream];
     
     AudioComponentDescription audioDescription = [BBBAudioChunkPlayer audioDescription];
-    AudioComponent         inputComponent = [BBBAudioChunkPlayer inputComponentForDescription:audioDescription];
+    AudioComponent inputComponent = [BBBAudioChunkPlayer inputComponentForDescription:audioDescription];
     
     status &= [BBBAudioChunkPlayer createAudioUnit:self.audioUnit forInput:inputComponent];
     
@@ -121,6 +115,8 @@ static OSStatus recordingCallback(void *inRefCon,
 }
 
 - (BOOL)finish {
+    streamData = nil;
+    currentData = nil;
     return [BBBAudioChunkPlayer checkStatus: AudioComponentInstanceDispose(self.audioUnit)];
 }
 

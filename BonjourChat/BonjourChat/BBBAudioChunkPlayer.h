@@ -17,6 +17,8 @@
 
 @interface BBBAudioChunkPlayer : NSObject
 
++ (nonnull instancetype)sharedPlayer;
+
 - (BOOL)prepareWithStream:(nonnull id<BBBAudioStream>)stream;
 - (BOOL)start;
 - (BOOL)stop;
