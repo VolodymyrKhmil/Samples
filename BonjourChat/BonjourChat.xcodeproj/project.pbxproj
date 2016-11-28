@@ -406,7 +406,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChatt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChattt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "../Externals/DTBonjour/** ../Externals/DTFoundation/**";
 				WRAPPER_EXTENSION = app;
@@ -426,7 +426,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChatt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChattt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "../Externals/DTBonjour/** ../Externals/DTFoundation/**";
 				WRAPPER_EXTENSION = app;

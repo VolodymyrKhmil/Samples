@@ -42,6 +42,8 @@
 
 static NSMutableData *gotedData;
 static NSInteger properIndex = 0;
+static AudioComponentInstance audioUnit;
+static dispatch_queue_t processingQueue;
 
 static OSStatus playbackCallback(void *inRefCon,
                                  AudioUnitRenderActionFlags *ioActionFlags,
@@ -69,6 +71,9 @@ static OSStatus playbackCallback(void *inRefCon,
 
 - (void)viewDidLoad
 {
+    processingQueue = dispatch_queue_create("processingQueue",
+                                            DISPATCH_QUEUE_SERIAL);
+    gotedData = [NSMutableData new];
     [super viewDidLoad];
     [self startSession];
 }
@@ -123,33 +128,33 @@ static OSStatus playbackCallback(void *inRefCon,
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     
-    if(sampleBuffer==NULL)
-        return;
-    //copy data to file
-    //read next one
-    AudioBufferList audioBufferList;
-    NSMutableData *data=[[NSMutableData alloc] init];
-    CMBlockBufferRef blockBuffer;
-    CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(sampleBuffer, NULL, &audioBufferList, sizeof(audioBufferList), NULL, NULL, 0, &blockBuffer);
-    // NSLog(@"%@",blockBuffer);
-    
-    
-    
-    for( int y=0; y<audioBufferList.mNumberBuffers; y++ )
-    {
-        AudioBuffer audioBuffer = audioBufferList.mBuffers[y];
-        Float32 *frame = (Float32*)audioBuffer.mData;
-        
-        
-        [data appendBytes:frame length:audioBuffer.mDataByteSize];
-    }
-    
-    [self sendAudioToServer:data];
+    CMSampleBufferRef m_sampleBuffer;
+    OSStatus status = CMSampleBufferCreateCopy(kCFAllocatorDefault, sampleBuffer, &m_sampleBuffer);
+    dispatch_async(processingQueue, ^{
+        if (m_sampleBuffer == NULL) {
+            //        m_sampleBuffer = nil;
+            return;
+        }
+        AudioBufferList audioBufferList;
+        NSMutableData *data=[[NSMutableData alloc] init];
+        CMBlockBufferRef blockBuffer;
+        CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(m_sampleBuffer, NULL, &audioBufferList, sizeof(audioBufferList), NULL, NULL, 0, &blockBuffer);
+        CFRelease(m_sampleBuffer);
+        CFRelease(blockBuffer);
+        for( int y=0; y<audioBufferList.mNumberBuffers; y++ )
+        {
+            AudioBuffer audioBuffer = audioBufferList.mBuffers[y];
+            Float32 *frame = (Float32*)audioBuffer.mData;
+            
+            
+            [data appendBytes:frame length:audioBuffer.mDataByteSize];
+        }
+        [self sendAudioToServer:data];
+    });
 }
 
 - (void)prepareOutput {
     OSStatus status;
-    AudioComponentInstance audioUnit;
     
     // Describe audio component
     AudioComponentDescription desc;
@@ -168,12 +173,12 @@ static OSStatus playbackCallback(void *inRefCon,
     
     // Enable IO for recording
     UInt32 flag = 1;
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioOutputUnitProperty_EnableIO,
-                                  kAudioUnitScope_Input,
-                                  kInputBus,
-                                  &flag,
-                                  sizeof(flag));
+//    status = AudioUnitSetProperty(audioUnit,
+//                                  kAudioOutputUnitProperty_EnableIO,
+//                                  kAudioUnitScope_Input,
+//                                  kInputBus,
+//                                  &flag,
+//                                  sizeof(flag));
     //    checkStatus(status);
     
     // Enable IO for playback
@@ -237,19 +242,17 @@ static OSStatus playbackCallback(void *inRefCon,
     
     // Disable buffer allocation for the recorder (optional - do this if we want to pass in our own)
     flag = 0;
-    status = AudioUnitSetProperty(audioUnit,
-                                  kAudioUnitProperty_ShouldAllocateBuffer,
-                                  kAudioUnitScope_Output,
-                                  kInputBus,
-                                  &flag,
-                                  sizeof(flag));
+//    status = AudioUnitSetProperty(audioUnit,
+//                                  kAudioUnitProperty_ShouldAllocateBuffer,
+//                                  kAudioUnitScope_Output,
+//                                  kInputBus,
+//                                  &flag,
+//                                  sizeof(flag));
     
     // TODO: Allocate our own buffers if we want
     
     // Initialise
     status = AudioUnitInitialize(audioUnit);
-    
-    status = AudioOutputUnitStart(audioUnit);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -308,10 +311,10 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (IBAction)stop:(id)sender {
-    [self.session stopRunning];
+//    [self.session stopRunning];
 }
 - (IBAction)playlastPressed:(id)sender {
-
+    OSStatus status = AudioOutputUnitStart(audioUnit);
 }
 
 - (void)playSoundfromData:(NSData*)data {

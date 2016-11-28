@@ -115,6 +115,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="iM0-u7-12x" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hwN-uE-PlB">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -137,7 +138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSL-zh-gJp">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSL-zh-gJp">
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="sendToServer:" destination="own-DV-izk" eventType="touchUpInside" id="7dF-mw-Zko"/>
@@ -156,7 +157,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0D-RS-mUZ">
-                                <state key="normal" title="Record"/>
+                                <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="startRec:" destination="own-DV-izk" eventType="touchUpInside" id="EdY-Yf-C8r"/>
                                 </connections>
