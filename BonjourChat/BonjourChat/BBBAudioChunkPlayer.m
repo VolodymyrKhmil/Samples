@@ -19,11 +19,13 @@
 
 @implementation BBBAudioChunkPlayer
 
-static AudioComponentInstance fakeAudioUnit;
+#pragma mark - Static
 
 static id<BBBAudioStream> streamData;
 static NSData *currentData;
 static NSInteger dataIndex;
+
+#pragma mark - Callbacks
 
 static OSStatus playbackCallback(void *inRefCon,
                                  AudioUnitRenderActionFlags *ioActionFlags,
@@ -36,11 +38,12 @@ static OSStatus playbackCallback(void *inRefCon,
         AudioBuffer buffer = ioData->mBuffers[i];
         unsigned char *frameBuffer = buffer.mData;
         unsigned char *bytePtr = NULL;
+        NSUInteger bytesSize = 0;
         for (int j = 0; j < inNumberFrames*2; j++){
             unsigned char byte = 0b0;
 
 
-            if (dataIndex + 1 < currentData.length) {
+            if (dataIndex + 1 < bytesSize) {
                 ++dataIndex;
                 byte = bytePtr[dataIndex];
             } else {
@@ -49,6 +52,7 @@ static OSStatus playbackCallback(void *inRefCon,
                 if (currentData != nil) {
                     bytePtr = (unsigned char *)[currentData bytes];
                     byte = bytePtr[dataIndex];
+                    bytesSize = [currentData length] / sizeof(unsigned char);
                 }
             }
             
@@ -75,7 +79,6 @@ static OSStatus recordingCallback(void *inRefCon,
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [BBBAudioChunkPlayer new];
-        instance.audioUnit = fakeAudioUnit;
     });
     
     return instance;
@@ -91,7 +94,7 @@ static OSStatus recordingCallback(void *inRefCon,
     AudioComponentDescription audioDescription = [BBBAudioChunkPlayer audioDescription];
     AudioComponent inputComponent = [BBBAudioChunkPlayer inputComponentForDescription:audioDescription];
     
-    status &= [BBBAudioChunkPlayer createAudioUnit:self.audioUnit forInput:inputComponent];
+    status &= [BBBAudioChunkPlayer createAudioUnit:&_audioUnit forInput:inputComponent];
     
     AudioStreamBasicDescription streamDescription = [BBBAudioChunkPlayer streamDescription];
     if (self.record) {
@@ -158,8 +161,8 @@ static OSStatus recordingCallback(void *inRefCon,
     return description;
 }
 
-+ (BOOL)createAudioUnit:(AudioComponentInstance)unit forInput:(AudioComponent)input {
-    return [BBBAudioChunkPlayer checkStatus: AudioComponentInstanceNew(input, &unit)];
++ (BOOL)createAudioUnit:(AudioComponentInstance*)unit forInput:(AudioComponent)input {
+    return [BBBAudioChunkPlayer checkStatus: AudioComponentInstanceNew(input, unit)];
 }
 
 + (BOOL)setupRecordingForUnit:(AudioComponentInstance)unit withStreamDescription:(AudioStreamBasicDescription)description {
@@ -179,7 +182,6 @@ static OSStatus recordingCallback(void *inRefCon,
                                                                     sizeof(description))];
     AURenderCallbackStruct callbackStruct;
     callbackStruct.inputProc = recordingCallback;
-//    callbackStruct.inputProcRefCon = self;
     status &= [BBBAudioChunkPlayer checkStatus:AudioUnitSetProperty(unit,
                                                                     kAudioOutputUnitProperty_SetInputCallback,
                                                                     kAudioUnitScope_Global,
@@ -209,7 +211,6 @@ static OSStatus recordingCallback(void *inRefCon,
     AURenderCallbackStruct callbackStruct;
     
     callbackStruct.inputProc = playbackCallback;
-//    callbackStruct.inputProcRefCon = self;
     status &= [BBBAudioChunkPlayer checkStatus:AudioUnitSetProperty(unit,
                                                                     kAudioUnitProperty_SetRenderCallback,
                                                                     kAudioUnitScope_Global,
