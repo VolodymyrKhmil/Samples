@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66621E65F6830215FB900798 /* Pods_PDFSigningSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */; };
+		E01049FF1E4B5DAB00D3E1C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E01049FE1E4B5DAB00D3E1C4 /* main.m */; };
+		E0104A021E4B5DAB00D3E1C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A011E4B5DAB00D3E1C4 /* AppDelegate.m */; };
+		E0104A0A1E4B5DAB00D3E1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0104A091E4B5DAB00D3E1C4 /* Assets.xcassets */; };
+		E0104A0D1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0104A0B1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard */; };
+		E0104A191E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A161E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m */; };
+		E0104A1A1E4B5DFC00D3E1C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A181E4B5DFC00D3E1C4 /* ViewController.m */; };
+		E0104A1C1E4B5E0800D3E1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */; };
+		E0104A1E1E4B5FDE00D3E1C4 /* hello-world.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.debug.xcconfig"; sourceTree = "<group>"; };
+		BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.release.xcconfig"; sourceTree = "<group>"; };
+		E01049FA1E4B5DAB00D3E1C4 /* PDFSigningSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFSigningSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E01049FE1E4B5DAB00D3E1C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E0104A001E4B5DAB00D3E1C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E0104A011E4B5DAB00D3E1C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E0104A091E4B5DAB00D3E1C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0104A0C1E4B5DAB00D3E1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E0104A0E1E4B5DAB00D3E1C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0104A151E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBBPlaceWithConstraint.h"; sourceTree = "<group>"; };
+		E0104A161E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBBPlaceWithConstraint.m"; sourceTree = "<group>"; };
+		E0104A171E4B5DFC00D3E1C4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E0104A181E4B5DFC00D3E1C4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "hello-world.pdf"; sourceTree = "<group>"; };
+		E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFSigningSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E01049F71E4B5DAB00D3E1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66621E65F6830215FB900798 /* Pods_PDFSigningSample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24233B51CFF97A66B1C66B27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */,
+				BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		35D361AB7A814E18ADC1EBC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E01049F11E4B5DAB00D3E1C4 = {
+			isa = PBXGroup;
+			children = (
+				E01049FC1E4B5DAB00D3E1C4 /* PDFSigningSample */,
+				E01049FB1E4B5DAB00D3E1C4 /* Products */,
+				24233B51CFF97A66B1C66B27 /* Pods */,
+				35D361AB7A814E18ADC1EBC9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E01049FB1E4B5DAB00D3E1C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E01049FA1E4B5DAB00D3E1C4 /* PDFSigningSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E01049FC1E4B5DAB00D3E1C4 /* PDFSigningSample */ = {
+			isa = PBXGroup;
+			children = (
+				E0104A001E4B5DAB00D3E1C4 /* AppDelegate.h */,
+				E0104A011E4B5DAB00D3E1C4 /* AppDelegate.m */,
+				E0104A091E4B5DAB00D3E1C4 /* Assets.xcassets */,
+				E0104A0B1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard */,
+				E0104A0E1E4B5DAB00D3E1C4 /* Info.plist */,
+				E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */,
+				E0104A171E4B5DFC00D3E1C4 /* ViewController.h */,
+				E0104A181E4B5DFC00D3E1C4 /* ViewController.m */,
+				E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */,
+				E0104A141E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint */,
+				E01049FD1E4B5DAB00D3E1C4 /* Supporting Files */,
+			);
+			path = PDFSigningSample;
+			sourceTree = "<group>";
+		};
+		E01049FD1E4B5DAB00D3E1C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E01049FE1E4B5DAB00D3E1C4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E0104A141E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint */ = {
+			isa = PBXGroup;
+			children = (
+				E0104A151E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.h */,
+				E0104A161E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m */,
+			);
+			path = "UIView+BBBPlaceWithConstraint";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E01049F91E4B5DAB00D3E1C4 /* PDFSigningSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0104A111E4B5DAB00D3E1C4 /* Build configuration list for PBXNativeTarget "PDFSigningSample" */;
+			buildPhases = (
+				F7D698F75B3109FFFCCD91A3 /* [CP] Check Pods Manifest.lock */,
+				E01049F61E4B5DAB00D3E1C4 /* Sources */,
+				E01049F71E4B5DAB00D3E1C4 /* Frameworks */,
+				E01049F81E4B5DAB00D3E1C4 /* Resources */,
+				E6184AD22DF7EF47C5C62D99 /* [CP] Embed Pods Frameworks */,
+				D7868CF7E1766FC0F31FF94E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PDFSigningSample;
+			productName = PDFSigningSample;
+			productReference = E01049FA1E4B5DAB00D3E1C4 /* PDFSigningSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E01049F21E4B5DAB00D3E1C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Bindeks;
+				TargetAttributes = {
+					E01049F91E4B5DAB00D3E1C4 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E01049F51E4B5DAB00D3E1C4 /* Build configuration list for PBXProject "PDFSigningSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E01049F11E4B5DAB00D3E1C4;
+			productRefGroup = E01049FB1E4B5DAB00D3E1C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E01049F91E4B5DAB00D3E1C4 /* PDFSigningSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E01049F81E4B5DAB00D3E1C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0104A1E1E4B5FDE00D3E1C4 /* hello-world.pdf in Resources */,
+				E0104A1C1E4B5E0800D3E1C4 /* Main.storyboard in Resources */,
+				E0104A0D1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard in Resources */,
+				E0104A0A1E4B5DAB00D3E1C4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D7868CF7E1766FC0F31FF94E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6184AD22DF7EF47C5C62D99 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7D698F75B3109FFFCCD91A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E01049F61E4B5DAB00D3E1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0104A191E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m in Sources */,
+				E0104A021E4B5DAB00D3E1C4 /* AppDelegate.m in Sources */,
+				E0104A1A1E4B5DFC00D3E1C4 /* ViewController.m in Sources */,
+				E01049FF1E4B5DAB00D3E1C4 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E0104A0B1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E0104A0C1E4B5DAB00D3E1C4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E0104A0F1E4B5DAB00D3E1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E0104A101E4B5DAB00D3E1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E0104A121E4B5DAB00D3E1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"/**",
+				);
+				INFOPLIST_FILE = PDFSigningSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bindeks.PDFSigningSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E0104A131E4B5DAB00D3E1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-Universal\"/**",
+				);
+				INFOPLIST_FILE = PDFSigningSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bindeks.PDFSigningSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E01049F51E4B5DAB00D3E1C4 /* Build configuration list for PBXProject "PDFSigningSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0104A0F1E4B5DAB00D3E1C4 /* Debug */,
+				E0104A101E4B5DAB00D3E1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0104A111E4B5DAB00D3E1C4 /* Build configuration list for PBXNativeTarget "PDFSigningSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0104A121E4B5DAB00D3E1C4 /* Debug */,
+				E0104A131E4B5DAB00D3E1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E01049F21E4B5DAB00D3E1C4 /* Project object */;
+}

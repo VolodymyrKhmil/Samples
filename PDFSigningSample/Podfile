@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+platform :ios, ‘9.0’
+
+def all_pods
+pod 'OpenSSL-Universal', '~> 1.0'
+pod 'MuPDF', '~> 1.10'
+end
+
+target ‘PDFSigningSample’ do
+    all_pods
+end

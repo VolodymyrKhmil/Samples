@@ -234,6 +234,7 @@
 				TargetAttributes = {
 					A78258D61646D83D00F54871 = {
 						DevelopmentTeam = 4375MU7Y26;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -411,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C8B82E980A2F1B2D56843BC2 /* Pods-BonjourChat.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4375MU7Y26;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BonjourChat/BonjourChat-Prefix.pch";
@@ -420,8 +422,10 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChattt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChatttttt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "../Externals/DTBonjour/** ../Externals/DTFoundation/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -431,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E4C1EBA8A538FD3D8BF82D7 /* Pods-BonjourChat.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4375MU7Y26;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BonjourChat/BonjourChat-Prefix.pch";
@@ -440,7 +445,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChattt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drobnik.BonjourChatttttt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "../Externals/DTBonjour/** ../Externals/DTFoundation/**";
 				WRAPPER_EXTENSION = app;

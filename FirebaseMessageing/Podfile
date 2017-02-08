@@ -1,0 +1,4 @@
+target "FirebaseMessageing" do
+pod 'JSQMessagesViewController', '~> 7.3'
+pod 'FirebaseMessaging', '~> 1.2'
+end
