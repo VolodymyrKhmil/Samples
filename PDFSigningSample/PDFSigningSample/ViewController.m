@@ -17,6 +17,18 @@
 #import "rsa.h"
 #import "x509.h"
 #import "pem.h"
+#import "Signing.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#ifdef NDK_PROFILER
+#include "prof.h"
+#endif
+
+#include "mupdf/fitz.h"
+#include "mupdf/pdf.h"
 
 enum
 {
@@ -38,6 +50,7 @@ enum
 
 - (IBAction)signPDFPressed {
     [self createCertificate];
+    pdf_sign_signature_s(ctx, idoc, focus, keyfile, password);
 }
 
 - (void)setPdfContainerView:(UIView *)pdfContainerView {

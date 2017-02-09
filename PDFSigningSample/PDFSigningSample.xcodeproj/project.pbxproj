@@ -16,6 +16,7 @@
 		E0104A1A1E4B5DFC00D3E1C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A181E4B5DFC00D3E1C4 /* ViewController.m */; };
 		E0104A1C1E4B5E0800D3E1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */; };
 		E0104A1E1E4B5FDE00D3E1C4 /* hello-world.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */; };
+		E07E21BD1E4CF2FF0029DE2B /* Signing.m in Sources */ = {isa = PBXBuildFile; fileRef = E07E21BC1E4CF2FF0029DE2B /* Signing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		E0104A181E4B5DFC00D3E1C4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "hello-world.pdf"; sourceTree = "<group>"; };
+		E07E21BB1E4CF2FF0029DE2B /* Signing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signing.h; sourceTree = "<group>"; };
+		E07E21BC1E4CF2FF0029DE2B /* Signing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signing.m; sourceTree = "<group>"; };
 		E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFSigningSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +90,7 @@
 		E01049FC1E4B5DAB00D3E1C4 /* PDFSigningSample */ = {
 			isa = PBXGroup;
 			children = (
+				E07E21BA1E4CF2EC0029DE2B /* Signing */,
 				E0104A001E4B5DAB00D3E1C4 /* AppDelegate.h */,
 				E0104A011E4B5DAB00D3E1C4 /* AppDelegate.m */,
 				E0104A091E4B5DAB00D3E1C4 /* Assets.xcassets */,
@@ -117,6 +121,15 @@
 				E0104A161E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m */,
 			);
 			path = "UIView+BBBPlaceWithConstraint";
+			sourceTree = "<group>";
+		};
+		E07E21BA1E4CF2EC0029DE2B /* Signing */ = {
+			isa = PBXGroup;
+			children = (
+				E07E21BB1E4CF2FF0029DE2B /* Signing.h */,
+				E07E21BC1E4CF2FF0029DE2B /* Signing.m */,
+			);
+			name = Signing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +258,7 @@
 				E0104A191E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint.m in Sources */,
 				E0104A021E4B5DAB00D3E1C4 /* AppDelegate.m in Sources */,
 				E0104A1A1E4B5DFC00D3E1C4 /* ViewController.m in Sources */,
+				E07E21BD1E4CF2FF0029DE2B /* Signing.m in Sources */,
 				E01049FF1E4B5DAB00D3E1C4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
