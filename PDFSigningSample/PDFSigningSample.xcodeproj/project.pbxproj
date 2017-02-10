@@ -16,6 +16,7 @@
 		E0104A1A1E4B5DFC00D3E1C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A181E4B5DFC00D3E1C4 /* ViewController.m */; };
 		E0104A1C1E4B5E0800D3E1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */; };
 		E0104A1E1E4B5FDE00D3E1C4 /* hello-world.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */; };
+		E02D44321E4E20FC009F8EF7 /* Annot_Mixed.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E02D44311E4E20FC009F8EF7 /* Annot_Mixed.pdf */; };
 		E07E21BD1E4CF2FF0029DE2B /* Signing.m in Sources */ = {isa = PBXBuildFile; fileRef = E07E21BC1E4CF2FF0029DE2B /* Signing.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		E0104A181E4B5DFC00D3E1C4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0104A1B1E4B5E0800D3E1C4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "hello-world.pdf"; sourceTree = "<group>"; };
+		E02D44311E4E20FC009F8EF7 /* Annot_Mixed.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Annot_Mixed.pdf; sourceTree = "<group>"; };
 		E07E21BB1E4CF2FF0029DE2B /* Signing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signing.h; sourceTree = "<group>"; };
 		E07E21BC1E4CF2FF0029DE2B /* Signing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signing.m; sourceTree = "<group>"; };
 		E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFSigningSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				E0104A171E4B5DFC00D3E1C4 /* ViewController.h */,
 				E0104A181E4B5DFC00D3E1C4 /* ViewController.m */,
 				E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */,
+				E02D44311E4E20FC009F8EF7 /* Annot_Mixed.pdf */,
 				E0104A141E4B5DFC00D3E1C4 /* UIView+BBBPlaceWithConstraint */,
 				E01049FD1E4B5DAB00D3E1C4 /* Supporting Files */,
 			);
@@ -166,6 +169,7 @@
 				TargetAttributes = {
 					E01049F91E4B5DAB00D3E1C4 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4375MU7Y26;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -193,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E02D44321E4E20FC009F8EF7 /* Annot_Mixed.pdf in Resources */,
 				E0104A1E1E4B5FDE00D3E1C4 /* hello-world.pdf in Resources */,
 				E0104A1C1E4B5E0800D3E1C4 /* Main.storyboard in Resources */,
 				E0104A0D1E4B5DAB00D3E1C4 /* LaunchScreen.storyboard in Resources */,
@@ -372,6 +377,7 @@
 			baseConfigurationReference = 53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4375MU7Y26;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -389,6 +395,7 @@
 			baseConfigurationReference = BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4375MU7Y26;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

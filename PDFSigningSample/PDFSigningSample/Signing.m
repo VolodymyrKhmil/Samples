@@ -13,8 +13,6 @@
 #import "openssl/objects.h"
 #import "openssl/pem.h"
 #import "openssl/pkcs7.h"
-#import "openssl/pkcs12.h"
-#import "mupdf/pdf.h"
 #import "Signing.h"
 
 enum
@@ -422,17 +420,10 @@ static void add_from_bags(X509 **pX509, EVP_PKEY **pPkey, STACK_OF(PKCS12_SAFEBA
         add_from_bag(pX509, pPkey, sk_PKCS12_SAFEBAG_value(bags, i), pw);
 }
 
-pdf_signer *pdf_read_pfx(fz_context *ctx, const char *pfile, const char *pw)
+pdf_signer *pdf_read_pfx_s(fz_context *ctx, X509 *pX509, EVP_PKEY *pPkey)
 {
-    BIO *keybio = NULL;
-    
-    PKCS12 *p12 = NULL;
-    STACK_OF(PKCS7) *asafes;
     pdf_signer *signer = NULL;
-    int i;
     
-    fz_var(keybio);
-    fz_var(p12);
     fz_var(signer);
     fz_try(ctx)
     {
@@ -448,58 +439,9 @@ pdf_signer *pdf_read_pfx(fz_context *ctx, const char *pfile, const char *pw)
         
         ERR_clear_error();
         
-        keybio = BIO_new(BIO_s_file());
-        BIO_read_filename(keybio, pfile);
-        if (keybio == NULL)
-            fz_throw(ctx, FZ_ERROR_GENERIC, "Can't open pfx file: %s", pfile);
-        
-        p12 = d2i_PKCS12_bio(keybio, NULL);
-        if (p12 == NULL)
-            fz_throw(ctx, FZ_ERROR_GENERIC, "Invalid pfx file: %s", pfile);
-        
-        asafes = PKCS12_unpack_authsafes(p12);
-        if (asafes == NULL)
-            fz_throw(ctx, FZ_ERROR_GENERIC, "Invalid pfx file: %s", pfile);
-        
-        /* Nothing in this for loop can fz_throw */
-        for (i = 0; i < sk_PKCS7_num(asafes); i++)
-        {
-            PKCS7 *p7;
-            STACK_OF(PKCS12_SAFEBAG) *bags;
-            int bagnid;
-            
-            p7 = sk_PKCS7_value(asafes, i);
-            bagnid = OBJ_obj2nid(p7->type);
-            switch (bagnid)
-            {
-                case NID_pkcs7_data:
-                    bags = PKCS12_unpack_p7data(p7);
-                    break;
-                case NID_pkcs7_encrypted:
-                    bags = PKCS12_unpack_p7encdata(p7, pw, (int)strlen(pw));
-                    break;
-                default:
-                    continue;
-            }
-            
-            if (bags)
-            {
-                add_from_bags(&signer->x509, &signer->pkey, bags, pw);
-                sk_PKCS12_SAFEBAG_pop_free(bags, PKCS12_SAFEBAG_free);
-            }
-        }
-        sk_PKCS7_pop_free (asafes, PKCS7_free);
-        
-        if (signer->pkey == NULL)
-            fz_throw(ctx, FZ_ERROR_GENERIC, "Failed to obtain public key");
-        
-        if (signer->x509 == NULL)
-            fz_throw(ctx, FZ_ERROR_GENERIC, "Failed to obtain certificate");
-    }
-    fz_always(ctx)
-    {
-        BIO_free(keybio);
-        PKCS12_free(p12);
+
+        signer->x509 = pX509;
+        signer->pkey = pPkey;
     }
     fz_catch(ctx)
     {
@@ -712,9 +654,9 @@ int pdf_check_signature(fz_context *ctx, pdf_document *doc, pdf_widget *widget, 
     return res;
 }
 
-void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget, const char *sigfile, const char *password)
+void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget, X509 *pX509, EVP_PKEY *pPkey)
 {
-    pdf_signer *signer = pdf_read_pfx(ctx, sigfile, password);
+    pdf_signer *signer = pdf_read_pfx_s(ctx, pX509, pPkey);
     pdf_designated_name *dn = NULL;
     fz_buffer *fzbuf = NULL;
     
@@ -725,8 +667,8 @@ void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget
         fz_rect rect = fz_empty_rect;
         
         pdf_signature_set_value(ctx, doc, wobj, signer);
-        
-        pdf_to_rect(ctx, pdf_dict_get(ctx, wobj, PDF_NAME_Rect), &rect);
+        pdf_obj *dict = pdf_dict_get(ctx, wobj, PDF_NAME_Rect);
+        pdf_to_rect(ctx, dict, &rect);
         /* Create an appearance stream only if the signature is intended to be visible */
         if (!fz_is_empty_rect(&rect))
         {
