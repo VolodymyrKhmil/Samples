@@ -112,9 +112,28 @@ enum
     pdf_page *page;
     page = pdf_load_page(ctx, idoc, 0);
     focus = pdf_create_widget(ctx, idoc, page, PDF_WIDGET_TYPE_SIGNATURE, "test");
-    fz_rect *rect = new ;
-    pdf_bound_widget(ctx, focus, fz_rect)
     pdf_sign_signature_s(ctx, idoc, focus, data.x509, data.pkey);
+    pdf_write_options opts = {0};
+    opts.do_incremental = 1;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/s.pdf",
+                          documentsDirectory];
+    const char *cfilename = [fileName UTF8String];
+    
+    FILE * f;
+    f = fopen(cfilename, "a");
+//    perror ("Error opening threshold file");
+    fz_output *output = fz_new_output_with_file_ptr(ctx, f, 0);
+//    pdf_write_document(ctx, idoc, output, &opts);
+    char ebuf[256] = "Failed";
+    if (pdf_check_signature(ctx, idoc, focus, cfilename, ebuf, sizeof(ebuf)))
+    {
+        strcpy(ebuf, "Signature is valid");
+    }
 }
 
 - (void)setPdfContainerView:(UIView *)pdfContainerView {
@@ -126,7 +145,7 @@ enum
     ctx = fz_new_context(NULL, NULL, ResourceCacheMaxSize);
     fz_register_document_handlers(ctx);
     
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"Annot_Mixed" ofType:@"pdf"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"hello-world" ofType:@"pdf"];
     
     self.doc = [[MuDocRef alloc] initWithFilename:file];
     if (self.doc) {

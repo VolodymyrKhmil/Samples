@@ -654,6 +654,32 @@ int pdf_check_signature(fz_context *ctx, pdf_document *doc, pdf_widget *widget, 
     return res;
 }
 
+fz_rect * pdf_to_rect_s(fz_context *ctx, pdf_obj *array, fz_rect *r)
+{
+    float a = pdf_to_real(ctx, pdf_array_get(ctx, array, 0));
+    float b = pdf_to_real(ctx, pdf_array_get(ctx, array, 1));
+    float c = pdf_to_real(ctx, pdf_array_get(ctx, array, 2));
+    float d = pdf_to_real(ctx, pdf_array_get(ctx, array, 3));
+    r->x0 = fz_min(a, c);
+    r->y0 = fz_min(b, d);
+    r->x1 = fz_max(a, c);
+    r->y1 = fz_max(b, d);
+    if (!pdf_is_array(ctx, array))
+        *r = fz_empty_rect;
+    else
+    {
+        float a = pdf_to_real(ctx, pdf_array_get(ctx, array, 0));
+        float b = pdf_to_real(ctx, pdf_array_get(ctx, array, 1));
+        float c = pdf_to_real(ctx, pdf_array_get(ctx, array, 2));
+        float d = pdf_to_real(ctx, pdf_array_get(ctx, array, 3));
+        r->x0 = fz_min(a, c);
+        r->y0 = fz_min(b, d);
+        r->x1 = fz_max(a, c);
+        r->y1 = fz_max(b, d);
+    }
+    return r;
+}
+
 void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget, X509 *pX509, EVP_PKEY *pPkey)
 {
     pdf_signer *signer = pdf_read_pfx_s(ctx, pX509, pPkey);
@@ -668,7 +694,7 @@ void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget
         
         pdf_signature_set_value(ctx, doc, wobj, signer);
         pdf_obj *dict = pdf_dict_get(ctx, wobj, PDF_NAME_Rect);
-        pdf_to_rect(ctx, dict, &rect);
+        pdf_to_rect_s(ctx, dict, &rect);
         /* Create an appearance stream only if the signature is intended to be visible */
         if (!fz_is_empty_rect(&rect))
         {
