@@ -1,0 +1,6 @@
+framework module mupdf {
+  umbrella header "MuPDF-umbrella.h"
+
+  export *
+  module * { export * }
+}

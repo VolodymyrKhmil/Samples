@@ -81,6 +81,37 @@ struct SigningData createCertificate() {
     data.pkey = pkey;
     data.x509 = x509;
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/key.pem",
+                          documentsDirectory];
+    const char *cfilename = [fileName UTF8String];
+    
+    FILE * f;
+    f = fopen(cfilename, "wb");
+    PEM_write_PrivateKey(
+                         f,                  /* write the key to the file we've opened */
+                         pkey,               /* our key from earlier */
+                         EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
+                         "replace_me",       /* passphrase required for decrypting the key on disk */
+                         10,                 /* length of the passphrase string */
+                         NULL,               /* callback for requesting a password */
+                         NULL                /* data to pass to the callback */
+    );
+    fclose(f);
+    fileName = [NSString stringWithFormat:@"%@/cert.pem",
+                          documentsDirectory];
+    cfilename = [fileName UTF8String];
+    FILE * p;
+    p = fopen(cfilename, "wb");
+    PEM_write_X509(
+                   p,   /* write the certificate to the file we've opened */
+                   x509 /* our certificate */
+    );
+    fclose(p);
+    
     return data;
 }
 
@@ -93,6 +124,7 @@ enum
 
 @property (weak, nonatomic) IBOutlet UIView *pdfContainerView;
 @property (nonatomic, strong) MuDocRef *doc;
+@property (nonatomic, strong) MuDocumentController *docController;
 
 @end
 
@@ -123,11 +155,11 @@ enum
     NSString *fileName = [NSString stringWithFormat:@"%@/s.pdf",
                           documentsDirectory];
     const char *cfilename = [fileName UTF8String];
-    
-    FILE * f;
-    f = fopen(cfilename, "a");
+    [self.docController save];
+//    FILE * f;
+//    f = fopen(cfilename, "a");
 //    perror ("Error opening threshold file");
-    fz_output *output = fz_new_output_with_file_ptr(ctx, f, 0);
+//    fz_output *output = fz_new_output_with_file_ptr(ctx, f, 0);
 //    pdf_write_document(ctx, idoc, output, &opts);
     char ebuf[256] = "Failed";
     if (pdf_check_signature(ctx, idoc, focus, cfilename, ebuf, sizeof(ebuf)))
@@ -145,15 +177,15 @@ enum
     ctx = fz_new_context(NULL, NULL, ResourceCacheMaxSize);
     fz_register_document_handlers(ctx);
     
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"hello-world" ofType:@"pdf"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"KhmilVolodymyrProjects" ofType:@"pdf"];
     
     self.doc = [[MuDocRef alloc] initWithFilename:file];
     if (self.doc) {
-         MuDocumentController *document = [[MuDocumentController alloc] initWithFilename:file path:file document: self.doc];
-        [_pdfContainerView addSubview:document.view];
-        [_pdfContainerView addConstraints:[UIView placeView:document.view onOtherView:_pdfContainerView]];
-        [document didMoveToParentViewController:self];
-        [self addChildViewController:document];
+         self.docController = [[MuDocumentController alloc] initWithFilename:file path:file document: self.doc];
+        [_pdfContainerView addSubview:self.docController.view];
+        [_pdfContainerView addConstraints:[UIView placeView:self.docController.view onOtherView:_pdfContainerView]];
+        [self.docController didMoveToParentViewController:self];
+        [self addChildViewController:self.docController];
     }
 }
 

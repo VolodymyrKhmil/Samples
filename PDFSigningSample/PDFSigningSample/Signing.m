@@ -680,6 +680,64 @@ fz_rect * pdf_to_rect_s(fz_context *ctx, pdf_obj *array, fz_rect *r)
     return r;
 }
 
+//pdf_obj *pdf_new_string_s(fz_context *ctx, pdf_document *doc, const char *str, int len)
+//{
+//    pdf_obj_string *obj;
+//    obj = Memento_label(fz_malloc(ctx, offsetof(pdf_obj_string, buf) + len + 1), "pdf_obj(string)");
+//    obj->super.refs = 1;
+//    obj->super.kind = PDF_STRING;
+//    obj->super.flags = 0;
+//    obj->len = len;
+//    memcpy(obj->buf, str, len);
+//    obj->buf[len] = '\0';
+//    return &obj->super;
+//}
+
+void pdf_signature_set_value(fz_context *ctx, pdf_document *doc, pdf_obj *field, pdf_signer *signer)
+{
+    pdf_obj *v;
+    pdf_obj *indv;
+    int vnum;
+    pdf_obj *byte_range;
+    pdf_obj *contents;
+    char buf[2048];
+    
+    memset(buf, 0, sizeof(buf));
+    
+    vnum = pdf_create_object(ctx, doc);
+    indv = pdf_new_indirect(ctx, doc, vnum, 0);
+    pdf_dict_put_drop(ctx, field, PDF_NAME_V, indv);
+    
+    fz_var(v);
+    fz_try(ctx)
+    {
+        v = pdf_new_dict(ctx, doc, 4);
+        pdf_update_object(ctx, doc, vnum, v);
+    }
+    fz_always(ctx)
+    {
+        pdf_drop_obj(ctx, v);
+    }
+    fz_catch(ctx)
+    {
+        fz_rethrow(ctx);
+    }
+    
+    byte_range = pdf_new_array(ctx, doc, 4);
+    pdf_dict_put_drop(ctx, v, PDF_NAME_ByteRange, byte_range);
+    
+    contents = pdf_new_string(ctx, doc, buf, sizeof(buf));
+    pdf_dict_put_drop(ctx, v, PDF_NAME_Contents, contents);
+    
+    pdf_dict_put_drop(ctx, v, PDF_NAME_Filter, PDF_NAME_Adobe_PPKLite);
+    pdf_dict_put_drop(ctx, v, PDF_NAME_SubFilter, PDF_NAME_adbe_pkcs7_detached);
+    
+    /* Record details within the document structure so that contents
+     * and byte_range can be updated with their correct values at
+     * saving time */
+    pdf_xref_store_unsaved_signature(ctx, doc, field, signer);
+}
+
 void pdf_sign_signature_s(fz_context *ctx, pdf_document *doc, pdf_widget *widget, X509 *pX509, EVP_PKEY *pPkey)
 {
     pdf_signer *signer = pdf_read_pfx_s(ctx, pX509, pPkey);
