@@ -37,7 +37,4 @@ enum
 - (void) onTap: (UITapGestureRecognizer*)sender;
 - (void) showNavigationBar;
 - (void) hideNavigationBar;
-
-- (void) save;
-
 @end

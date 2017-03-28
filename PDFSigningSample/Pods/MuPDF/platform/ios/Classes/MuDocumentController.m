@@ -777,9 +777,6 @@ static void saveDoc(const char *current_path, fz_document *doc)
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 }
-- (void)save {
-    saveDoc(_filePath.UTF8String, doc);
-}
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66621E65F6830215FB900798 /* Pods_PDFSigningSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */; };
+		0AD9E2D4B5888BB51DEEE9D8 /* Pods_PDFSigningSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3F986577F31ABA6D23599A /* Pods_PDFSigningSample.framework */; };
 		E01049FF1E4B5DAB00D3E1C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E01049FE1E4B5DAB00D3E1C4 /* main.m */; };
 		E0104A021E4B5DAB00D3E1C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0104A011E4B5DAB00D3E1C4 /* AppDelegate.m */; };
 		E0104A0A1E4B5DAB00D3E1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0104A091E4B5DAB00D3E1C4 /* Assets.xcassets */; };
@@ -22,8 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.debug.xcconfig"; sourceTree = "<group>"; };
-		BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.release.xcconfig"; sourceTree = "<group>"; };
+		7C3F986577F31ABA6D23599A /* Pods_PDFSigningSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFSigningSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9890811F6DDDAF8A8107CDFE /* Pods-PDFSigningSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.debug.xcconfig"; sourceTree = "<group>"; };
+		A732A3544D2A880D807CB505 /* Pods-PDFSigningSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDFSigningSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample.release.xcconfig"; sourceTree = "<group>"; };
 		E01049FA1E4B5DAB00D3E1C4 /* PDFSigningSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFSigningSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01049FE1E4B5DAB00D3E1C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0104A001E4B5DAB00D3E1C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,9 +40,9 @@
 		E0104A1D1E4B5FDE00D3E1C4 /* hello-world.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "hello-world.pdf"; sourceTree = "<group>"; };
 		E02D44311E4E20FC009F8EF7 /* Annot_Mixed.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Annot_Mixed.pdf; sourceTree = "<group>"; };
 		E02D44411E55D3F1009F8EF7 /* KhmilVolodymyrProjects.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = KhmilVolodymyrProjects.pdf; sourceTree = "<group>"; };
+		E04B65731E71CC5F00C7AFBA /* document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
 		E07E21BB1E4CF2FF0029DE2B /* Signing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signing.h; sourceTree = "<group>"; };
 		E07E21BC1E4CF2FF0029DE2B /* Signing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signing.m; sourceTree = "<group>"; };
-		E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFSigningSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,26 +50,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66621E65F6830215FB900798 /* Pods_PDFSigningSample.framework in Frameworks */,
+				0AD9E2D4B5888BB51DEEE9D8 /* Pods_PDFSigningSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24233B51CFF97A66B1C66B27 /* Pods */ = {
+		30B4A91054F528A4BE30C4D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */,
-				BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */,
+				9890811F6DDDAF8A8107CDFE /* Pods-PDFSigningSample.debug.xcconfig */,
+				A732A3544D2A880D807CB505 /* Pods-PDFSigningSample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		35D361AB7A814E18ADC1EBC9 /* Frameworks */ = {
+		A5A91669C9BBD09ADEFF7AFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E421D180D9E7D2DBCDDF3447 /* Pods_PDFSigningSample.framework */,
+				7C3F986577F31ABA6D23599A /* Pods_PDFSigningSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,8 +79,8 @@
 			children = (
 				E01049FC1E4B5DAB00D3E1C4 /* PDFSigningSample */,
 				E01049FB1E4B5DAB00D3E1C4 /* Products */,
-				24233B51CFF97A66B1C66B27 /* Pods */,
-				35D361AB7A814E18ADC1EBC9 /* Frameworks */,
+				30B4A91054F528A4BE30C4D3 /* Pods */,
+				A5A91669C9BBD09ADEFF7AFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +133,7 @@
 		E07E21BA1E4CF2EC0029DE2B /* Signing */ = {
 			isa = PBXGroup;
 			children = (
+				E04B65731E71CC5F00C7AFBA /* document.h */,
 				E07E21BB1E4CF2FF0029DE2B /* Signing.h */,
 				E07E21BC1E4CF2FF0029DE2B /* Signing.m */,
 			);
@@ -145,12 +147,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0104A111E4B5DAB00D3E1C4 /* Build configuration list for PBXNativeTarget "PDFSigningSample" */;
 			buildPhases = (
-				F7D698F75B3109FFFCCD91A3 /* [CP] Check Pods Manifest.lock */,
+				CC9EE042152A694C6D49CD64 /* [CP] Check Pods Manifest.lock */,
 				E01049F61E4B5DAB00D3E1C4 /* Sources */,
 				E01049F71E4B5DAB00D3E1C4 /* Frameworks */,
 				E01049F81E4B5DAB00D3E1C4 /* Resources */,
-				E6184AD22DF7EF47C5C62D99 /* [CP] Embed Pods Frameworks */,
-				D7868CF7E1766FC0F31FF94E /* [CP] Copy Pods Resources */,
+				98CB428566DA42A7156D41B7 /* [CP] Embed Pods Frameworks */,
+				EFDE7C61F29A0D42BA828153 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -212,22 +214,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D7868CF7E1766FC0F31FF94E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E6184AD22DF7EF47C5C62D99 /* [CP] Embed Pods Frameworks */ = {
+		98CB428566DA42A7156D41B7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -242,7 +229,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F7D698F75B3109FFFCCD91A3 /* [CP] Check Pods Manifest.lock */ = {
+		CC9EE042152A694C6D49CD64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -255,6 +242,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EFDE7C61F29A0D42BA828153 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PDFSigningSample/Pods-PDFSigningSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -378,7 +380,7 @@
 		};
 		E0104A121E4B5DAB00D3E1C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53935BF84ADAA7F6F401D6B6 /* Pods-PDFSigningSample.debug.xcconfig */;
+			baseConfigurationReference = 9890811F6DDDAF8A8107CDFE /* Pods-PDFSigningSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4375MU7Y26;
@@ -396,7 +398,7 @@
 		};
 		E0104A131E4B5DAB00D3E1C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF37F35448D9C17A823B1199 /* Pods-PDFSigningSample.release.xcconfig */;
+			baseConfigurationReference = A732A3544D2A880D807CB505 /* Pods-PDFSigningSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4375MU7Y26;

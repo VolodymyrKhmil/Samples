@@ -53,8 +53,8 @@ static inline int pdf_name_eq(fz_context *ctx, pdf_obj *a, pdf_obj *b)
 {
 	if (a == b)
 		return 1;
-//	if (a < PDF_OBJ_NAME__LIMIT && b < PDF_OBJ_NAME__LIMIT)
-//		return 0;
+	if (a < PDF_OBJ_NAME__LIMIT && b < PDF_OBJ_NAME__LIMIT)
+		return 0;
 	return !pdf_objcmp_resolve(ctx, a, b);
 }
 
